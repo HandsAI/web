@@ -1,0 +1,133 @@
+body{
+    opacity: 1;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 300;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+body>header>a{
+    text-decoration: none;
+}
+
+div {
+    color: #bbb;
+}
+
+#logo {    
+    background: white url(/hands/hands_html/images/landing/icon_web_coral.svg) no-repeat center top;
+	background: white url(/hands/hands_html/css/images/logo_hands.png) no-repeat center top;		  
+	background: white url(/hands/hands_html/css/images/logo.png) no-repeat center top;		  	
+    height: 60px;
+}
+
+#brand h1 {
+    font-weight: 400;
+    font-size: 45px;
+    color: #f55f5d;
+	color: #f47e5c;
+}
+
+#brand h1, #brand h2, #brand h3 {
+    font-weight: 300;
+    text-align: center;
+    margin: 0;
+}
+
+@media (min-width: 622px){
+	#brand h2 {
+		font-size: 30px;
+	}
+}
+
+#brand h2 {
+    font-weight: 300;
+    color: #ccc;
+}
+
+@media (min-width: 622px){
+	.video {
+		padding-top: 100px;
+		padding-bottom: 145px;
+		margin-bottom: 0px;
+		background: url(/hands/hands_html/images/landing/frame.png);
+		background-size: 380px 771px;
+		background-repeat: no-repeat;
+		background-position: top center;
+	}
+	#videocontainer {
+		width: 320px;
+		height: 568px;
+		margin: 0 auto;
+	}
+}
+
+#appstore {
+    text-align: center;
+}
+
+#appstoredownload {
+    background: white url(/hands/hands_html/images/landing/app-store.png) no-repeat center top;
+    width: 203px;
+    height: 60px;
+    background-size: 203px 60px;
+    display: inline-block;
+}
+
+#contact {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    font-size: 20px;
+    text-align: center;
+}
+
+address {
+    font-style: normal;
+}
+
+#contact p {
+    margin-bottom: 20px;
+}
+
+a {
+    color: #f55f5d;
+	color: #f47e5c;
+    text-decoration: none;
+}
+
+#navbar {
+    text-align: center;
+}
+
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+#navbar>ul{
+	display: inline-flex;
+	padding: 0;
+}
+
+#navbar>ul>li{
+    display: inline;
+    list-style-type: none;
+    padding: 10px;
+}
+
+#navbar>ul>li>a{
+    font-size: 18px;
+}
+
+footer {
+    font-weight: 300;
+    text-align: center;
+    margin-top: 50px;
+    font-size: 14px;
+    color: #ccc;
+}
+
+.cel_landing{
+	width: 100%;
+    height: auto;
+}

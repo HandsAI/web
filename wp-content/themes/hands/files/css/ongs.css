@@ -1,0 +1,177 @@
+.subtitulo_italic{
+	/*font-style: italic;*/
+	font-weight: 600;
+}
+.icon_ongs{
+	/*padding: 15px;*/
+}
+
+.lefttoright{
+	position: relative;
+    -webkit-animation: myfirst 2s; /* Safari 4.0 - 8.0 */
+    -webkit-animation-direction: alternate; /* Safari 4.0 - 8.0 */
+    animation: myfirst 2s;
+    animation-direction: alternate;
+}
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes myfirst {
+    0%   {left: -80px; top: 0px;}
+    100%  {left: 0px; top: 0px;}
+}
+
+@keyframes myfirst {
+    0%   {opacity: 0; left: -80px; top: 0px;}
+    100%  {left: 0px; top: 0px;}
+}
+
+.righttoleft{
+	position: relative;
+    -webkit-animation: myfirst2 2s; /* Safari 4.0 - 8.0 */
+    -webkit-animation-direction: alternate; /* Safari 4.0 - 8.0 */
+    animation: myfirst2 2s;
+    animation-direction: alternate;
+}
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes myfirst2 {
+    0%   {opacity: 0; left: 80px; top: 0px;}
+    100%  {opacity: 1; left: 0px; top: 0px;}
+}
+
+@keyframes myfirst2 {
+    0%   {opacity: 0; left: 80px; top: 0px;}
+    100%  {opacity: 1; left: 0px; top: 0px;}
+}
+
+
+.ongs1_desc{
+	display:none;
+}
+.ongs2_desc{
+	display:none;
+}
+.ongs3_desc{
+	display:none;
+}
+.ongs4_desc{
+	display:none;
+}
+.ongs5_desc{
+	display:none;
+}
+.ongs6_desc{
+	display:none;
+}
+.ongs7_desc{
+	display:none;
+}
+.ongs8_desc{
+	display:none;
+}
+.ongs9_desc{
+	display:none;
+}
+.ongs10_desc{
+	display:none;
+}
+
+.fondogris{
+	background: #f5f5f5;
+}
+
+#oc-portfolio{
+	margin-bottom: 50px;
+}
+
+.oc-item{
+	opacity: 1 !important;
+	cursor: pointer;
+}
+
+.portfolio-desc h3 a:hover {
+    color: #1ABC9C !important;
+}
+
+.portfolio-overlay a{
+	left: 58% !important;
+
+}
+.owl-stage-outer {
+    overflow: hidden !important;
+}
+
+.encourage_desc1{
+	display:none;
+	text-align: justify;
+    margin-top: 10px;
+}
+.encourage_desc2{
+	display:none;
+	text-align: justify;
+    margin-top: 10px;
+}
+.encourage_desc3{
+	display:none;
+	text-align: justify;
+    margin-top: 10px;
+}
+.encourage_desc4{
+	display:none;
+	text-align: justify;
+    margin-top: 10px;
+}
+.encourage_desc5{
+	display:none;
+	text-align: justify;
+    margin-top: 10px;
+}
+
+.owl-prev{
+	top: 170px !important;
+}
+
+.owl-next{
+    top: 170px !important;
+}
+
+.content-wrap{
+	/*padding-bottom: 0px !important;*/
+}
+
+.gif{
+	margin-top: 15px;
+	bottom: 0px;
+	height: 450px;
+	left: 130px;
+	position: relative;
+}
+
+/* Removes the default 20px margin and creates some padding space for the indicators and controls */
+.carousel {
+    margin-bottom: 0;
+		padding: 0 40px 30px 40px;
+}
+/* Reposition the controls slightly */
+.carousel-control {
+		left: -12px;
+}
+.carousel-control.right {
+		right: -12px;
+}
+/* Changes the position of the indicators */
+.carousel-indicators {
+		right: 50%;
+		top: auto;
+		bottom: 0px;
+		margin-right: -19px;
+}
+/* Changes the colour of the indicators */
+.carousel-indicators li {
+		background: #c0c0c0;
+}
+.carousel-indicators .active {
+		background: #333333;
+}
+
+.lead{
+	font-size: 18px;
+}

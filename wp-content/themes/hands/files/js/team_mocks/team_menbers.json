@@ -1,0 +1,146 @@
+[
+  {
+    "section": [
+      {
+				"name":"Hana Corio",
+				"img":"Hana Corio.png",
+				"linkedin":"https://ar.linkedin.com/in/hanae-corio-6b7b3585",
+				"mail":"mailto:hana@hands.ai"
+		},
+		{
+			"name":"Carolina Fogliato",
+				"img":"Carolina Fogliato.jpg",
+				"linkedin":"https://www.linkedin.com/in/carolina-fogliato-70155a3b/en",
+				"mail":"mailto:caro@hands.ai"
+		},
+		{
+			"name":"Gustavo Matus",
+				"img":"Gustavo Matus.jpg",
+				"linkedin":"https://ar.linkedin.com/in/gustavo-matus-359798124/en",
+				"mail":"ailto:matus@hands.ai"
+		},
+		{
+				"name":"Matias Baglieri",
+				"img":"Matias Baglieri.png",
+				"linkedin":"https://www.linkedin.com/in/matiasbaglieri/en",
+				"mail":"mailto:matias@hands.ai"
+		}
+    ]
+  },
+	{
+    "section": [
+
+  	{
+      	"name":"Alba Portillo",
+				"img":"Alba Portillo.jpg",
+				"linkedin":"#",
+				"mail":"#"
+		},
+		{
+			"name":"Daniel Pérez",
+				"img":"Daniel Pérez.png",
+				"linkedin":"#",
+				"mail":"#"
+		},
+		{
+			"name":"Eduardo Herrera",
+				"img":"Eduardo Herrera.jpg",
+				"linkedin":"#",
+				"mail":"#"
+		},
+		{
+			"name":"Elizabeth Coronel",
+				"img":"Elizabeth Coronel.jpg",
+				"linkedin":"#",
+				"mail":"#"
+		}
+    ]
+  },
+  {
+     "section": [
+
+     {
+			"name":"Francisco Ramirez",
+				"img":"Francisco Ramirez.jpg",
+				"linkedin":"#",
+				"mail":"#"
+			},
+      	{
+      	"name":"Giomar Maestre",
+				"img":"Giomar Maestre.jpg",
+				"linkedin":"#",
+				"mail":"#"
+		},
+		{
+			"name":"Herwin Rey",
+				"img":"Herwin Leon Díaz.jpg",
+				"linkedin":"#",
+				"mail":"#"
+		},
+		{
+			"name":"Isabel Rojano",
+				"img":"Isabel Rojano.jpg",
+				"linkedin":"#",
+				"mail":"#"
+		}
+    ]
+  },
+  {
+     "section": [
+     	{
+			"name":"John Márquez",
+				"img":"John Márquez.jpg",
+				"linkedin":"#",
+				"mail":"#"
+			},
+
+      	{
+      	"name":"Leonardo Villalobos",
+				"img":"Leonardo Villalobos.jpg",
+				"linkedin":"#",
+				"mail":"#"
+		},
+		{
+			"name":"Louis Perdomo",
+				"img":"Louis Perdomo.jpg",
+				"linkedin":"#",
+				"mail":"#"
+		},
+		{
+			"name":"Miguel Salas",
+				"img":"Miguel Salas.jpg",
+				"linkedin":"#",
+				"mail":"#"
+		}
+    ]
+  },
+  {
+     "section": [
+      {
+			"name":"Moises Apaza",
+				"img":"Moises Apaza.jpg",
+				"linkedin":"#",
+				"mail":"#"
+			},
+
+      	{
+      	"name":"Sara Guerrero",
+				"img":"Sara Guerrero.png",
+				"linkedin":"#",
+				"mail":"#"
+		},
+		{
+			"name":"Yasdrid Rojas",
+				"img":"Yasdrid Rojas.jpg",
+				"linkedin":"#",
+				"mail":"#"
+		},
+		{
+			"name":"Yenireth Marin",
+				"img":"Yenireth Marin.jpg",
+				"linkedin":"#",
+				"mail":"#"
+		}
+    ]
+  }
+];
