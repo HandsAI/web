@@ -168,7 +168,7 @@ $lng.='<ul>
 							<li><a href="" <?php echo $class_black?> data-href="#section-nextgen"><div>About</div></a>
 								<ul>
 									<li><a <?php echo $class_black?> href="<?php echo $site ?>/about" data-href="#section-nextgen"><div>About Us</div></a></li>
-									<li><a <?php echo $class_black?> href="<?php echo $site ?>/one_pager.pdf" data-href="#section-nextgen"><div>One Pager</div></a></li>
+									
 									<li><a <?php echo $class_black?> href="<?php echo $site ?>/careers-jobs" data-href="#section-nextgen"><div>Jobs</div></a></li>
 									
 									<!--<li><a <?php echo $class_black?> href="<?php echo $site ?>/our-company" 
@@ -191,7 +191,17 @@ $lng.='<ul>
 
 						<ul class="one-page-menu" data-easing="easeInOutExpo" data-speed="1250" data-offset="160">
 
-							 <li><a <?php echo $class_black?> href="<?php echo $site ?>/whitepaper" data-href="#"><div>White Paper</div></a></li>
+							 <li><a href="" <?php echo $class_black?> data-href="#section-nextgen"><div>Tokenization</div></a>
+								<ul>
+
+									<li><a <?php echo $class_black?> href="<?php echo $site ?>/whitepaper" data-href="#"><div>White Paper</div></a></li>
+									<li><a <?php echo $class_black?> href="<?php echo $site ?>/one_pager.pdf" data-href="#section-nextgen"><div>One Pager</div></a></li>
+									<li><a <?php echo $class_black?> href="<?php echo $site ?>/bounty" data-href="#"><div>Bounty</div></a></li>
+
+								</ul>
+							</li>
+
+							 
 							 <li><a <?php echo $class_black?> href="<?php echo $site ?>/blog" data-href="#"><div>Blog</div></a></li> 
 							 <li><a <?php echo $class_black?> href="<?php echo $site ?>/contact" data-href="#"><div>Contact</div></a></li> 
 							
@@ -216,7 +226,7 @@ $lng.='<ul>
 							<li><a href="" <?php echo $class_black?> data-href="#section-nextgen"><div>Nosotros</div></a>
 								<ul>
 									<li><a <?php echo $class_black?> href="<?php echo $site ?>/es/quienes_somos" data-href="#section-nextgen"><div>Quienes Somos</div></a></li>
-									<li><a <?php echo $class_black?> href="<?php echo $site ?>/one_pager.pdf" data-href="#section-nextgen"><div>One Pager</div></a></li>
+									
 									<li><a <?php echo $class_black?> href="<?php echo $site ?>/es/trabajos" data-href="#section-nextgen"><div>Trabajos</div></a></li>
 									<!--<li><a <?php echo $class_black?> href="<?php echo $site ?>/es/nuestra_compania" data-href="#section-nextgen"><div>Nuestra Compania</div></a></li>-->
 								</ul>
@@ -238,7 +248,19 @@ $lng.='<ul>
 
 						<ul class="one-page-menu" data-easing="easeInOutExpo" data-speed="1250" data-offset="160">
 
-							 <li><a <?php echo $class_black?> href="<?php echo $site ?>/whitepaper" data-href="#"><div>White Paper</div></a></li>
+							 
+
+							 <li><a href="" <?php echo $class_black?> data-href="#section-nextgen"><div>Tokenization</div></a>
+								<ul>
+
+									<li><a <?php echo $class_black?> href="<?php echo $site ?>/whitepaper" data-href="#"><div>White Paper</div></a></li>
+									<li><a <?php echo $class_black?> href="<?php echo $site ?>/one_pager.pdf" data-href="#section-nextgen"><div>One Pager</div></a></li>
+									<li><a <?php echo $class_black?> href="<?php echo $site ?>/es/generosidad" data-href="#"><div>Generosidad</div></a></li>
+
+								</ul>
+							</li>
+
+
 							 <li><a <?php echo $class_black?> href="<?php echo $site ?>/es/articulos" data-href="#"><div>Articulos</div></a></li> 
 							 <li><a <?php echo $class_black?> href="<?php echo $site ?>/es/contacto" data-href="#"><div>Contacto</div></a></li> 
 							
