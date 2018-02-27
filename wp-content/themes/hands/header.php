@@ -169,7 +169,10 @@ $lng.='<ul>
 								<ul>
 									<li><a <?php echo $class_black?> href="<?php echo $site ?>/about" data-href="#section-nextgen"><div>About Us</div></a></li>
 									<li><a <?php echo $class_black?> href="<?php echo $site ?>/one_pager.pdf" data-href="#section-nextgen"><div>One Pager</div></a></li>
-									<!--<li><a <?php echo $class_black?> href="<?php echo $site ?>/our-company" data-href="#section-nextgen"><div>Our Company</div></a></li>-->
+									<li><a <?php echo $class_black?> href="<?php echo $site ?>/careers-jobs" data-href="#section-nextgen"><div>Jobs</div></a></li>
+									
+									<!--<li><a <?php echo $class_black?> href="<?php echo $site ?>/our-company" 
+									data-href="#section-nextgen"><div>Our Company</div></a></li>-->
 								</ul>
 							</li>
 							<li><a href="" <?php echo $class_black?> data-href="#section-nextgen"><div>Explore</div></a>
@@ -180,6 +183,7 @@ $lng.='<ul>
 									<li><a <?php echo $class_black?> href="<?php echo $site ?>/donations" data-href="#"><div>For Donations</div></a></li>
 
 									<li><a <?php echo $class_black?> href="<?php echo $site ?>/community" data-href="#"><div>For Your Community</div></a></li>
+									<li><a <?php echo $class_black?> href="<?php echo $site ?>/bounty" data-href="#"><div>Bounty</div></a></li>
 
 								</ul>
 							</li>
@@ -213,6 +217,7 @@ $lng.='<ul>
 								<ul>
 									<li><a <?php echo $class_black?> href="<?php echo $site ?>/es/quienes_somos" data-href="#section-nextgen"><div>Quienes Somos</div></a></li>
 									<li><a <?php echo $class_black?> href="<?php echo $site ?>/one_pager.pdf" data-href="#section-nextgen"><div>One Pager</div></a></li>
+									<li><a <?php echo $class_black?> href="<?php echo $site ?>/es/trabajos" data-href="#section-nextgen"><div>Trabajos</div></a></li>
 									<!--<li><a <?php echo $class_black?> href="<?php echo $site ?>/es/nuestra_compania" data-href="#section-nextgen"><div>Nuestra Compania</div></a></li>-->
 								</ul>
 							</li>
@@ -224,6 +229,8 @@ $lng.='<ul>
 									<li><a <?php echo $class_black?> href="<?php echo $site ?>/es/donaciones" data-href="#"><div>Para Donaciones</div></a></li>
 
 									<li><a <?php echo $class_black?> href="<?php echo $site ?>/es/comunidad" data-href="#"><div>Para la Comunidad</div></a></li>
+
+									<li><a <?php echo $class_black?> href="<?php echo $site ?>/es/generosidad" data-href="#"><div>Generosidad</div></a></li>
 
 								</ul>
 							</li>

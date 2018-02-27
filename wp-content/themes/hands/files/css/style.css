@@ -94,6 +94,8 @@
 /* ----------------------------------------------------------------
 	Basic
 -----------------------------------------------------------------*/
+.width_20{	width: 20%;}
+.height_60px{	height: 60px;}
 .donation_contact_section{
 	margin: 0px !important;
 	padding: 0px !important;
@@ -14283,4 +14285,68 @@ blockquote{
 	.business-card-middle{margin:0 5px}
 	@media (max-width:900px){
 		.business-card-middle{margin:5px 0}
+	}
+
+
+
+
+
+
+
+   .bounty-card{
+	background-repeat:no-repeat;
+	background-position:50%;
+	background-size:cover;
+
+    }
+    .bounty-card-middle{
+    	margin: 0 5px;
+    }
+	.bounty-card{
+		padding-top: 10px;
+		border: 1px solid #EEE;
+		height:450px;
+		-webkit-box-align:center;
+		-ms-flex-align:center;
+		align-items:center;
+		-ms-flex-pack:distribute;
+		justify-content:space-around;
+		-webkit-box-orient:vertical;
+		-webkit-box-direction:normal;
+		-ms-flex-direction:column;
+		flex-direction:column}
+	.bounty-card-content{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-ms-flex-pack:distribute;justify-content:space-around;padding:5px;z-index:2;height:100%}
+	.bounty-card-content-section{-webkit-box-flex:2;-ms-flex:2;flex:2;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;padding:30px;-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start
+	}
+	
+	.bounty-line{
+		padding: 45px;
+	}
+	@media (max-width:900px){
+		.bounty-card-content-section{-webkit-box-align:center;-ms-flex-align:center;align-items:center}
+	}
+	.bounty-card-content-section:last-child{-webkit-box-flex:1;-ms-flex:1;flex:1}
+	.bounty-card-content-title{
+		font-size:26px;
+		font-weight:500;
+		line-height:1.32;
+		text-align:center;
+		color:#000000 !important;
+	}
+	.bounty-card-content-subtitle{
+		padding-top: 10px;
+		padding-bottom: 10px;
+		
+		font-size:14px;
+		line-height:1.4;
+		text-align:center;
+		color:#000000 !important}
+	.bounty-card-button{-ms-flex-item-align:end;align-self:flex-end;max-width:200px}
+	.bounty_border{border-bottom: 1px solid #EEE;}
+	@media (max-width:600px){
+		.bounty-card-button{-ms-flex-item-align:center;-ms-grid-row-align:center;align-self:center}
+	}
+	.bounty-card-middle{margin:0 5px}
+	@media (max-width:900px){
+		.bounty-card-middle{margin:5px 0}
 	}
