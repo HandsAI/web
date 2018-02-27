@@ -61,23 +61,10 @@ $header_sub_title = get_field('sitemap_header_sub_title', $post->ID);
         $category= str_replace('<div class="wsp-container">', '', $category);
         $category= str_replace('</div>', '', $category);
 
-        /*
-        $jobs=do_shortcode('[wp_sitemap_page only="jobpost"]');
-        $jobs= str_replace('><a', '><i class="icon-file-alt"></i> &nbsp;<a', $jobs);
-        $jobs= str_replace('<div class="wsp-container">', '', $jobs);
-        $jobs= str_replace('</div>', '', $jobs);
-
-
         $team_member=do_shortcode('[wp_sitemap_page only="team_member"]');
         $team_member= str_replace('><a', '><i class="icon-file-alt"></i> &nbsp;<a', $team_member);
         $team_member= str_replace('<div class="wsp-container">', '', $team_member);
         $team_member= str_replace('</div>', '', $team_member);
-
-        $solution=do_shortcode('[wp_sitemap_page only="solution"]');
-        $solution= str_replace('><a', '><i class="icon-file-alt"></i> &nbsp;<a', $solution);
-        $solution= str_replace('<div class="wsp-container">', '', $solution);
-        $solution= str_replace('</div>', '', $solution);
-	*/
         ?>
 
       
