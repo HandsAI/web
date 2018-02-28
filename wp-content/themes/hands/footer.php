@@ -68,7 +68,7 @@ $footer_subscriber_text=just_variable( "footer_subscriber_text_es", false);
 
 					<div  id="footer_copyright" class="col_half footer-text">
 						<?php echo $footer_subscriber_text?><br>
-						<div class="copyright-links"><a href="#">Terms of Use</a> / <a href="#">Privacy Policy</a> / <a href="<?php echo get_site_url()?>/sitemap">SiteMap</a></div>
+						<div class="copyright-links"> <a href="<?php echo get_site_url()?>/sitemap">SiteMap</a></div>
 					</div>
 
 				</div>

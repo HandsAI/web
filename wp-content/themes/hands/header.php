@@ -183,7 +183,7 @@ $lng.='<ul>
 									<li><a <?php echo $class_black?> href="<?php echo $site ?>/donations" data-href="#"><div>For Donations</div></a></li>
 
 									<li><a <?php echo $class_black?> href="<?php echo $site ?>/community" data-href="#"><div>For Your Community</div></a></li>
-									<li><a <?php echo $class_black?> href="<?php echo $site ?>/bounty" data-href="#"><div>Bounty</div></a></li>
+									
 
 								</ul>
 							</li>
