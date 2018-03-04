@@ -16,10 +16,11 @@ $about_team_sub_title = get_field('about_team_sub_title', $post->ID);
 $about_client_title = get_field('about_client_title', $post->ID);
 
 
-
-
 $listado_articulos = get_field('about_slider_images', $post->ID);
 $listado_articulos2 = get_field('about_client_list', $post->ID);
+
+$about_team_advisor = get_field('about_team2_title', $post->ID);
+$about_team_advisor_sub = get_field('about_team2_sub_title', $post->ID);
 
 
 
@@ -116,13 +117,21 @@ $listado_articulos2 = get_field('about_client_list', $post->ID);
 					<?php } ?>
 
 					
-
+ 
 					<div class="heading-block center">
 						<h2><?php echo $about_team_title ?></h2>
 						<span><?php echo $about_team_sub_title ?></span>
 					</div>
 
-					<?php echo do_shortcode( '[our-team]' );?>
+					
+					<?php echo do_shortcode( '[our-team group="DIRECTORS,LEADERSHIP"]' );?>
+
+					<div class="heading-block center">
+						<h2><?php echo $about_team_advisor ?></h2>
+						<span><?php echo $about_team_advisor_sub ?></span>
+					</div>
+
+					<?php echo do_shortcode( '[our-team group="Advisors"]' );?>
 
 				</div>
 
