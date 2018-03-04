@@ -19,7 +19,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="profile" href="http://gmpg.org/xfn/11">
 
-<?php //wp_head(); 
+<?php wp_head(); 
 $site=get_site_url();
 global $class_black;
 
@@ -148,8 +148,8 @@ $lng.='<ul>
 					============================================= -->
 					<?php if($class_black==""){?>
 					<div id="logo">
-						<a href="index.html" class="standard-logo" data-dark-logo="<?php echo get_bloginfo('template_directory'); ?>/files/images/logo-dark.png"><img src="<?php echo get_bloginfo('template_directory'); ?>/files/images/logo.png" alt="Canvas Logo"></a>
-						<a href="index.html" class="retina-logo" data-dark-logo="<?php echo get_bloginfo('template_directory'); ?>/files/images/logo-dark@2x.png"><img src="<?php echo get_bloginfo('template_directory'); ?>/files/images/logo@2x.png" alt="Canvas Logo"></a>
+						<a href="<?php echo $site ?>/" class="standard-logo" data-dark-logo="<?php echo get_bloginfo('template_directory'); ?>/files/images/logo-dark.png"><img src="<?php echo get_bloginfo('template_directory'); ?>/files/images/logo.png" alt="Canvas Logo"></a>
+						<a href="<?php echo $site ?>/" class="retina-logo" data-dark-logo="<?php echo get_bloginfo('template_directory'); ?>/files/images/logo-dark@2x.png"><img src="<?php echo get_bloginfo('template_directory'); ?>/files/images/logo@2x.png" alt="Canvas Logo"></a>
 					</div><!-- #logo end -->
 					<?php }else{?>
 					<div id="logo">
