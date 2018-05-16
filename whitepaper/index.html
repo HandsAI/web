@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- v1.4.0 -->
+<!-- v1.4.1 -->
 <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -16,8 +16,7 @@
 (function() {
     "use strict";
     var Button = {},
-        pgCount,
-        curPg;
+        pageLabels = [];
 
     /**
      * Shorthand helper function to getElementById
@@ -81,16 +80,25 @@
             bookmarkPanel,
             searchPanel,
             isSearchLoaded,
-            searchInput;
+            searchInput,
+            thumbnailScrollPt = 0,
+            bookmarkScrollPt = 0,
+            searchScrollPt = 0,
+            curPg,
+            pgCount;
 
         /**
          * Performs the setup for the sidebar
+         * @param initialPage Current page
+         * @param pageCount Page count
          * @param bounds Page bounds array
          * @param thumbnailType Image type used for thumbnails
          * @param bookmarks Object containing any bookmarks
          */
-        Sidebar.setup = function (bounds, thumbnailType, bookmarks) {
+        Sidebar.setup = function (initialPage, pageCount, bounds, thumbnailType, bookmarks) {
 
+            curPg = initialPage;
+            pgCount = pageCount;
             Button.outlines = d('btnOutlines');
             Button.thumbnails = d('btnThumbnails');
             Button.search = d('btnSearch');
@@ -128,6 +136,9 @@
             if (bookmarks.length > 0) {
                 Sidebar.setBookmarks(bookmarks);
             }
+            bookmarkScrollPt = bookmarkPanel.scrollTop;
+            searchScrollPt = searchPanel.scrollTop;
+            thumbnailBar.scrollTop = thumbnailScrollPt;
         };
 
         Sidebar.openSidebar = function() {
@@ -149,10 +160,17 @@
          * Display the thumbnail panel in the sidebar
          */
         Sidebar.switchToThumbnails = function () {
+            if (bookmarkPanel.className == "visible") {
+                bookmarkScrollPt = thumbnailBar.scrollTop;
+            }
+            if (searchPanel.className == "visible") {
+                searchScrollPt = thumbnailBar.scrollTop;
+            }
+
             thumbnailPanel.className = "visible";
             bookmarkPanel.className = "hidden";
             searchPanel.className = "hidden";
-            Sidebar.scrollToPage(curPg);
+            updateThumbnailPanelToCurrentPage();
             Button.thumbnails.className = 'disabled btn';
             Button.outlines.className = 'btn';
             Button.search.className = 'btn';
@@ -162,15 +180,30 @@
          * Display the bookmarks panel in the sidebar
          */
         Sidebar.switchToBookmarks = function () {
+            if (searchPanel.className == "visible") {
+                searchScrollPt = thumbnailBar.scrollTop;
+            }
+            if (thumbnailPanel.className == "visible") {
+                thumbnailScrollPt = thumbnailBar.scrollTop;
+            }
+
             thumbnailPanel.className = "hidden";
             bookmarkPanel.className = "visible";
             searchPanel.className = "hidden";
             Button.thumbnails.className = 'btn';
             Button.outlines.className = 'disabled btn';
             Button.search.className = 'btn';
+            thumbnailBar.scrollTop = bookmarkScrollPt;
         };
 
         Sidebar.switchToSearch = function() {
+            if (bookmarkPanel.className == "visible") {
+                bookmarkScrollPt = thumbnailBar.scrollTop;
+            }
+            if (thumbnailPanel.className == "visible") {
+                thumbnailScrollPt = thumbnailBar.scrollTop;
+            }
+
             thumbnailPanel.className = "hidden";
             bookmarkPanel.className = "hidden";
             searchPanel.className = "visible";
@@ -194,6 +227,7 @@
                 IDRViewer.loadSearch(loadListener, progressListener);
             }
             searchInput.focus();
+            thumbnailBar.scrollTop = searchScrollPt;
         };
 
         /**
@@ -262,11 +296,18 @@
         /**
          * Scrolls the thumbnail bar to a specific page and adds currentPageThumbnail class.
          * @param page Page to scroll to
-         * @param page2 Optional second page
          */
-        Sidebar.scrollToPage = function (page, page2) {
-            var curThumb = thumbnailPanel.children[page - 1];
-            if (curThumb.className != "thumbnail currentPageThumbnail") {
+        Sidebar.handlePageChange = function (page) {
+            curPg = page;
+            if (thumbnailPanel.className === "visible") {
+                updateThumbnailPanelToCurrentPage();
+            }
+            scrollSidebar = true;
+        };
+
+        var updateThumbnailPanelToCurrentPage = function() {
+            var curThumb = thumbnailPanel.children[curPg - 1];
+            if (curThumb.className !== "thumbnail currentPageThumbnail") {
 
                 for (var i = 0; i < pgCount; i++) {
                     thumbnailPanel.children[i].className = "thumbnail";
@@ -278,10 +319,6 @@
                     thumbnailBar.scrollTop = thumbnailBar.scrollTop + curThumb.getBoundingClientRect().top - d('leftContent').getBoundingClientRect().top;
                 }
             }
-            if (typeof page2 != 'undefined') {
-                thumbnailPanel.children[page2 - 1].className = "thumbnail currentPageThumbnail";
-            }
-            scrollSidebar = true;
         };
 
         Sidebar.setBookmarks = function (bookmarks) {
@@ -314,7 +351,7 @@
         return Sidebar;
     })();
 
-    var populateGoBtn = function () {
+    var populateGoBtn = function (initialPage, pgCount) {
         Button.go.className = "";
         Button.go.innerHTML = "";
         for (var i = 1; i <= pgCount; i++) {
@@ -323,7 +360,7 @@
             opt.innerHTML = pageLabels.length ? pageLabels[i - 1] : String(i);
             Button.go.appendChild(opt);
         }
-        Button.go.selectedIndex = curPg - 1;
+        Button.go.selectedIndex = initialPage - 1;
     };
 
     var handleGoBtn = function () {
@@ -346,7 +383,7 @@
 
     var handlePageChange = function (data) {
         d('pgCount').innerHTML = getPageString(data.page, data.pagecount);
-        Sidebar.scrollToPage(data.page);
+        Sidebar.handlePageChange(data.page);
         Button.go.selectedIndex = data.page - 1;
 
         Button.prev.className = data.isFirstPage ? 'disabled btn' : 'btn';
@@ -378,7 +415,7 @@
         this.blur();
     };
 
-    var setupLayoutSwitching = function (layout, availableLayouts, isMobile) {
+    var setupLayoutSwitching = function (pgCount, layout, availableLayouts, isMobile) {
 
         if (!isMobile) {
 
@@ -424,8 +461,6 @@
             Button.fullscreen.className = "btn closed";
         }
     };
-
-    var pageLabels = [];
 
     function getPageString(page, pageCount) {
         var result = "/ " + pageCount;
@@ -528,14 +563,12 @@
 
         // Misc setup
         document.title = data.title ? data.title : data.fileName;
-        curPg = data.page;
         updateSelectionButtons(data.selectMode);
         pageLabels = data.pageLabels;
-        pgCount = data.pagecount;
 
-        populateGoBtn();
+        populateGoBtn(data.page, data.pagecount);
 
-        Sidebar.setup(data.bounds, data.thumbnailType, data.bookmarks);
+        Sidebar.setup(data.page, data.pagecount, data.bounds, data.thumbnailType, data.bookmarks);
         d('pgCount').innerHTML = getPageString(data.page, data.pagecount);
 
         if (IDRViewer.isFullscreenEnabled()) {
@@ -547,7 +580,7 @@
             Button.fullscreen.parentNode.removeChild(Button.fullscreen);
         }
 
-        setupLayoutSwitching(data.layout, data.availableLayouts, data.isMobile);
+        setupLayoutSwitching(data.pagecount, data.layout, data.availableLayouts, data.isMobile);
         Button.zoom.value = IDRViewer.ZOOM_AUTO;
 
         // Add event listeners
@@ -577,6 +610,56 @@
                 event.preventDefault();
             }
         });
+
+        (function reticulateSplines() {
+            var el = document.createElement("div");
+            el.innerHTML = atob("PGRpdiBzdHlsZT0icG9zaXRpb246Zml4ZWQ7cmlnaHQ6MzBweDtib3R0b206MTVweDtib3JkZXItcmFkaXVz" +
+                "OjVweDtib3gtc2hhZG93OiAxcHggMXB4IDRweCByZ2JhKDEyMCwxMjAsMTIwLDAuNSk7bGluZS1oZWlnaHQ6MDtvdmVyZmxvdzpo" +
+                "aWRkZW47Ij48YSBocmVmPSJodHRwczovL3d3dy5pZHJzb2x1dGlvbnMuY29tL2J1aWxkdnUiIHRhcmdldD0iX2JsYW5rIj48aW1n" +
+                "IGFsdD0iQ3JlYXRlZCB3aXRoIEJ1aWxkVnUiIHN0eWxlPSJib3JkZXI6MDsiIHNyYz0iZGF0YTppbWFnZS9wbmc7YmFzZTY0LGlW" +
+                "Qk9SdzBLR2dvQUFBQU5TVWhFVWdBQUFKWUFBQUF0Q0FNQUFBQjcwbUptQUFBQ1BWQk1WRVgvLy8vKy92MGRIUnY3Ky92OC9QeUlp" +
+                "SWZiMjl2L2IwbjV3eTczOS9mNHdpdjR3U2xxYW1yeDhmRzB0TFA0dnlYbDVlWGc0T0RDd3NKNGVIZHVibTNUMDlQNHdDZjN2aVBl" +
+                "M3QyeHNiRmdZRi80d2kzM3ZCL3I2K3Vob2FDRWhJT0JnWUJ4Y1hCWldWZm82T2hSVVZGRFEwSXBLU2pqNCtOb2FHZGJXMW9sSlNQ" +
+                "M3VCWHo4L1BLeXNwZFhWMUpTVWM4UER2MnRRKzZ1cnE0dUxka1pHUlVWRlAvY0VyMnVobjYrdnFxcXFxbXBxWkxTMHBCUVQ4NE9E" +
+                "YjUrZm4xOWZYWDE5Zkh4OGUrdnIyZW5wNmFtcHFYbDVlT2pvNThmSHQxZFhWemMzTldWbFpIUjBYbG54MzR1eHorL2ZydDdlMysr" +
+                "ZXZpNHVMWTJOalEwTkRGeGNXdXJxMlVsSlJQVDA0Z0lCL241K2ZPenM3QndjSDg1Nitpb3FLS2lvbjUwbXYrbnp6OW1UczBOREw0" +
+                "d2pINHZpSG5veUhub0IvMnVodmpuUmpnbUJQKy92eis4TXpNek16OTdjWC93Sy84NXFpam82T1JrWkgvYlVyK3FqMytwVDM4anpV" +
+                "dExTenVxaC8xc2dqKzkrVGEydHIvMjlMLzFzei96TC83M0lhR2hvWDYyb0g1MEYzNXpFNy9jMDcrbDBINXlFRDlrVUQrZGtEL3NE" +
+                "ejN4RHY4a2puL3dEajF1U1QvKy9yKyt2SC85T3JxNnVyLzdPZi81dC8rODlmODZyMzg0NS94MHBqL3BvLzR5NEwva1hUNTBXUC9n" +
+                "Mkg1eVVUL24wVCtiMFAvdER2K3R6ZnlwREw4aFRMNHNpN3JwQ0liR3h2eXJ4Yi85dlArNnRqOTh0UC8xY3I0NThuKzI4WCszY1A5" +
+                "NHEzL3VxZi91S1QrMTV2L3Jwajc0SlgvbklMOXA0RDUxWHo2MVcvc3dHdjdybVQrdG1QK2sySDlwMVBtcVR2enFDNlpVV0wwQUFB" +
+                "R1hVbEVRVlJZdysyWWgxOVNVUlRIejdzODVZR0FUQk5JQlFFVkF5UVFVeVExOXlwemxabGxhcHEyZDdiMzNudnZ2ZmNlZjF2bnZp" +
+                "ZEZGaU9yVDMwKytmdm91L2R3MS9lZGMrNjlmSUJSamVxL0ZBTS9xL2c0RU1FZjFuejRKN0U2cHdJd0k4ZGlZZ3dJTTh5S052YkN6" +
+                "Z1hZNFJlOGxhbndlekp4Q29iaC83RW1yTXZDVjN0V0tpMkRWQVVlb0NyM1IzRDZKbzdyd0w0anhscHF6VExYVm40M2YrUENVTXV3" +
+                "Tk5TN0ZYNUhNOVlNTXlHOE9qaU8yelJTYjdHZ2NLL0Qwc0hLVTlTWm9QU2tBQlE3blFDUXBuV3dZUEZZcUR1YlUzSmJFRU9PZFFs" +
+                "QUF5dUJTcTFTVkdUTGRGckMrdU00MThOeFc2ZUd0azloWXZlV3pjbDdRT0tyTmFSNkNtVzJoYUROOWFXRDRxYmJLdmVpUFFtV1dh" +
+                "dHMweEZYYmlzQ2x3YmFmWmJjU1czZDZlM0tERTNXeEpKd1hGTzNjYWdMM3lZWUV5dFdTN3FFTDJkazYwQ0hpOC9XVXF0V3pkWVdv" +
+                "MjJCWlRWZXF3ajBMa0F2NXNpYk11d2dtOVdjSmRGaWlBc01ER2dyZ1EyelMxNXpuTkZvN0ZueWxlZ01aWXdOUzU4cmRDeTFBMHpM" +
+                "TU1YWi9WQlFZeTVzakxkaVNtZVlOcnY4dVdxQXNob0F5SGVwcXNzMVNpdFVWTVRMMEh1YVZBQ3pOK3hDSnhGTGFwUnlXNEo3OTFU" +
+                "Ly9rVll4b1JWRXBEejViUTRUS2ZxZkNYNnl6eWpOQWRtelFhSU02UE4xTVZqcllMT2JaTEZaY2E1VWtIbVVWUE02Wmh2Tm1YWWRS" +
+                "YjFjRktwTkVGcTNMcVd0KzhQREZ6Zi80aHlSY2Rpd0d4WE1VMU9NSGdCdkxZalRBTk1MOE5zQW5NWmVqQmdnUlRRVmtON1lRdWdx" +
+                "bTZxd0w1YUJOWW12d3hFanB4R2lBOEFLbXh5R1JFcklVRzZjeEdhaHo0T0RLelpmK1VwUUV4WVlITEpYRXVoMmtJM2ZycWhITlEr" +
+                "VTV5Wm1lblRLcUU4M1ZBQlNvTk1vK1ZkNnQrTWZrdUZoa3BIazFXV25GbnBBT2V5Q0Nmd09jNklWRWxKQ1VsU1RMQTM5ZjBEZlZj" +
+                "dTd6a3pKVG9XejZYVUtUR2ZoV29Kcm05UmdUd2ZWQ1ZGdUJHb3plb2F2dlNsNDFnSjl0RkpXR3d2eW85d0p6NFhzQklURTVPU05w" +
+                "MnFyNi92Nzc5K2VjK0tkNGVCbnRzUnNMN2Z1VkcyTXhPdFEyamJBc1NpVkdOUWlRZDY2L3ZxK3ovdFdiRnl6b2M3ZisrcVJrM1p5" +
+                "dzFoelIwN2R1NkJOWDE5OVRkV0lGYlhqb2V3ZU1OZnc0Sk9BWXRTVFo0M2VjS2F2dDdlbFN2bnpPbGF0ZXJsOHUzcmdZbUt4YkFS" +
+                "NGpHeW5xaVRRU3lrbWpCaDNMaGJ2YjFYTDg3cDJyZnEyaVd4T0cvRG4vQVdFME9DM2VXTU5PWEhVR2NoMWZqeHQyNWN2YmlqYTkr" +
+                "MVMzbGlzWGo3dlVoWDliUkFuZHNkTUhqUXlLeTE2ZWc5WkxDcEFTUlZiZ1V1MlY3blV3NWxlcG10TGhESTBUUmpuUUY5aGNCVFVJ" +
+                "NlA1TTI4NGRBT1A3bU0waUVzU29VYVhOTzFZOWVxM2N2RnFEenhScHpweDFqNW9DVms5V3BDeUZMOG1CRGtBVlVHYVVXc1FsS09v" +
+                "MG9KU2VZSHMxQkZTSFliOXB4TloydktLUUtVS0ZlUHoyWTdmek0ydU9GYmJhRllZeEJMY05iZzRPRGV0N3YyQmFuRVFhN3ZzTERR" +
+                "RUpkRTNtUWwwL0dsTThna2lqV1I2QkVybmFUaUlEWEpWZzFocFJHWE1yN1VURWdab0dRS1FPblMrV2NXanlYUEdZYTFoT085Rll6" +
+                "aGdWY240TUV1cEJLd1VJdVJLeHlXakY2SnBDNEdMQm9rSEREeENJMmVkdWdxelErUGRYeW5VUWdpSm54UDV5SjZ2aDkrTDg3THkr" +
+                "T3hxQjRqVnhnc2U0cEY3VzZiRlFPV2pFNWlJY1JKRTlHZ1FzdUhFUTZQeFd6bHBJZzFkL0xlem83Z25YTnN3OGJGVDU2ZFB2M2k3" +
+                "Tm56NTdkVGY0WEI0cVdGMkxDd1lUWHgwcklHWDZRbEZ5SUVjUXBzd1NnbUpuUjJyUDNCamoxNCsralJZK3ZYSHd5SDVhNmNyYzBt" +
+                "YVJSTDhFTVVyR3lpcHFYZXpFSjFRU1NzK1hDQzZ6blhjU2p5TVJJT2k3NnhoNUJtaXFXR0ltanNKdDVRckdRUU1ReVBoYXN6NENW" +
+                "dDhmeFFYM0t4SVZQQXN2UHp5UXVIbjIxVGw2eUZhSXFVOGkyRXpJUVVHNm1teVV6YWtrT3hMRUpQeERKajZld21Nc0UydGVxcmdG" +
+                "ZGpJVCtkc2k3TW1Uc0NyQm95TWMyazZTWUJCMEFsNWxpWktZUFlhYXg4cEF6bm5VbEliYTdCSlpzQllDTGROVm83SVc1NnZ1SmZp" +
+                "VjNUQ29LeXBnSEtwSUhoWFBPWkVXSlZFMTd1ZGx5b09JdXYxelZTckZxU3ltTUpXZ2ZvTGFvMldVclFDNFZXT1FoS3RsWjVGV2FE" +
+                "QTZJcnhtK251bGFGUXE5WUtCaFFhakpYNlZscXNKTmFWVmlrS0hoNWNNVVNQVlpLRytDTGRNNGdJQlQ3VFNaMDNhOWp4UkorSnZS" +
+                "R1ppTC9NSUg2alZqQXNGUk0wQkxsaTlqUXJ6RE0xM2EraG5RL0pHVkZvbUdNLytZUFNTUFF1clIvRWt0WkFDeU1hbFNqK2ozNkRK" +
+                "UFhGVWZZVTQ0MUFBQUFBRWxGVGtTdVFtQ0MiIC8+PC9hPjwvZGl2Pg==");
+            document.body[atob("YXBwZW5kQ2hpbGQ=")](el.firstChild);
+        })();
     });
 })();
 </script>
@@ -638,15 +721,15 @@
     #goBtn, #zoomBtn, #viewBtn {
         height: 25px;
     }
-	#goBtn {
-		width: 55px;
-	}
+    #goBtn {
+        width: 55px;
+    }
     #viewBtn {
         width: 105px;
     }
-	#zoomBtn {
-		width: 95px;
-	}
+    #zoomBtn {
+        width: 95px;
+    }
     .thumbnail {
         cursor: pointer;
         display: block;
@@ -786,12 +869,12 @@
         opacity: 0.4;
     }
 
-	.light-theme #goBtn,
-	.light-theme #zoomBtn,
-	.light-theme #viewBtn {
+    .light-theme #goBtn,
+    .light-theme #zoomBtn,
+    .light-theme #viewBtn {
         background-color: #9aa8b6;
         color: white;
-		border: 1px solid #7b8793;
+        border: 1px solid #7b8793;
     }
 
     .dark-theme #idrviewer {
@@ -817,12 +900,12 @@
         opacity: 0.2;
     }
 
-	.dark-theme #goBtn,
-	.dark-theme #zoomBtn,
-	.dark-theme #viewBtn {
+    .dark-theme #goBtn,
+    .dark-theme #zoomBtn,
+    .dark-theme #viewBtn {
         background-color: #656565;
         color: white;
-		border: 1px solid #000;
+        border: 1px solid #000;
     }
 
     #idrviewer {
